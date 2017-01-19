@@ -1,0 +1,3 @@
+rootProject.name = 'TachographApp'
+
+include ':app'
