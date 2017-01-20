@@ -19,15 +19,15 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 15,
-    backgroundColor: '#B69099',
+    backgroundColor: '#AA3366',
     alignItems: 'center',
   },
   buttonLabel: {
-    color: 'white',
+    color: '#F0F0F0',
     marginBottom: 5,
   },
   buttonIcon: {
-    color: 'white',
+    color: '#F0F0F0',
   },
 });
 
