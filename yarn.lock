@@ -3414,6 +3414,10 @@ react-native-obd2@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/react-native-obd2/-/react-native-obd2-0.0.1.tgz#a42daa1a1cdaf4824277b2e8bc13fa05f7e13e7a"
 
+react-native-permissions@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-0.2.5.tgz#81c3adbb09d9edb6ae320d458ca9c021e03a5aba"
+
 react-native-router-flux@^3.37.0:
   version "3.37.0"
   resolved "https://registry.yarnpkg.com/react-native-router-flux/-/react-native-router-flux-3.37.0.tgz#18e8fd3e1e6dbdc4d8340cd47313c28bb9bb1caf"

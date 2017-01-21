@@ -38,6 +38,7 @@
 		54589D3985BF4E3AAF556A86 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A84910523CA64E25A39FA85C /* Octicons.ttf */; };
 		1E8DE2234D2A49B5A303A3E6 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A47C4293592B4B9E98589402 /* SimpleLineIcons.ttf */; };
 		925F8D025E8F4D239C151F25 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99C4CD2124AF4F0F8A2AB40D /* Zocial.ttf */; };
+		D5F2C76792794823AD1CA357 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA01FE505DB498F8EF43FFB /* libReactNativePermissions.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -265,6 +266,8 @@
 		A84910523CA64E25A39FA85C /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		A47C4293592B4B9E98589402 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		99C4CD2124AF4F0F8A2AB40D /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		45EFF5176E2B4F8A86BB33D5 /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; name = "ReactNativePermissions.xcodeproj"; path = "../node_modules/react-native-permissions/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		FEA01FE505DB498F8EF43FFB /* libReactNativePermissions.a */ = {isa = PBXFileReference; name = "libReactNativePermissions.a"; path = "libReactNativePermissions.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +299,7 @@
 				7562DD11FB9646CDBFB3E429 /* libcxxreact.a in Frameworks */,
 				3D9CEA13A32E4EB1A24CF0BF /* libjschelpers.a in Frameworks */,
 				906299ED1E134FBF96245FB4 /* libRNVectorIcons.a in Frameworks */,
+				D5F2C76792794823AD1CA357 /* libReactNativePermissions.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +446,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				298F3A178BAB470DBAF34849 /* RNI18n.xcodeproj */,
 				7788F32280404027915C8AC8 /* RNVectorIcons.xcodeproj */,
+				45EFF5176E2B4F8A86BB33D5 /* ReactNativePermissions.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -899,6 +904,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -915,6 +921,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TachographApp.app/TachographApp";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">TachographApp</string>
+    <string name="app_name">Tachograph</string>
+    <string name="tracking_notification_title">Tachograph</string>
+    <string name="tracking_notification_text">Your trip is being recorded</string>
+    <string name="tracking_notification_subtext_fine">GPS location, accuracy %1$s m</string>
+    <string name="tracking_notification_subtext_no_location">You might have to check your location settings.</string>
+    <string name="tracking_notification_text_no_location">Aquiring location...</string>
+    <string name="toast_tracking_stopped">Stopped tracking</string>
+    <string name="tracking_notification_text_no_location_permission">Cannot access location.</string>
+    <string name="tracking_notification_subtext_no_location_permission">Missing permission for accessing device\'s location. Tap here to change settings.</string>
+    <string name="tracking_notification_text_location_services_disabled">Cannot access location.</string>
+    <string name="tracking_notification_subtext_location_services_disabled">Location services are disabled. Tap here to change settings.</string>
+    <string name="tracking_button_stop_tracking_single">Stop recording</string>
 </resources>

@@ -13,6 +13,7 @@
 		"react-native-button": "^1.7.1",
 		"react-native-i18n": "^1.0.0",
 		"react-native-obd2": "^0.0.1",
+		"react-native-permissions": "^0.2.5",
 		"react-native-router-flux": "^3.37.0",
 		"react-native-vector-icons": "^4.0.0",
 		"react-redux": "^5.0.2",

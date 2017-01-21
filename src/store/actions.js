@@ -6,6 +6,14 @@ export function setOdometer(odometerReading) {
   };
 }
 
+export function addLogEntry(trip) {
+  return {
+    type: 'SAVE_TRIP',
+    trip,
+  };
+}
+
 export default {
   setOdometer,
+  addLogEntry,
 };

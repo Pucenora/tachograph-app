@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tachograph</string>
+    <string name="tracking_notification_title">Tachograph</string>
+    <string name="tracking_notification_text">Ihre Fahrt wird aufgezeichnet</string>
+    <string name="tracking_notification_text_no_location">Bestimme Position...</string>
+    <string name="tracking_notification_subtext_no_location">Prüfen Sie ggf. Ihre Standorteinstellungen</string>
+    <string name="tracking_notification_subtext_fine">GPS-Ortung, Genauigkeit %1$s m</string>
+    <string name="toast_tracking_stopped">Aufzeichnung der Fahrt beendet</string>
+    <string name="tracking_notification_text_no_location_permission">Fahrtaufzeichnung nicht möglich</string>
+    <string name="tracking_notification_subtext_no_location_permission">Zugriff auf den Gerätestandort verweigert. Zum Erteilen der Standortberechtigung hier tippen.</string>
+    <string name="tracking_notification_text_location_services_disabled">Fahrtaufzeichnung nicht möglich</string>
+    <string name="tracking_notification_subtext_location_services_disabled">Standortermittlung deaktiviert. Zum Öffnen der Einstellungen hier tippen.</string>
+    <string name="tracking_button_stop_tracking_single">Aufzeichnung stoppen</string>
+</resources>

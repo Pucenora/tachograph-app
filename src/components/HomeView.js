@@ -8,9 +8,12 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import AwesomeButton from 'react-native-awesome-button';
 import Button from 'react-native-button';
+import { bindActionCreators } from 'redux';
+import Permissions from 'react-native-permissions';
+import { Actions } from 'react-native-router-flux';
 import commonStyles from './commonStyles';
+import { startTracking } from '../tracking/TrackingActions';
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -35,6 +38,31 @@ class HomeView extends React.Component {
 
   constructor(props) {
     super(props);
+    this.requestLocationPermission = this.requestLocationPermission.bind(this);
+    this.state = {
+      locationPermission: 'undetermined',
+    };
+  }
+
+  componentDidMount() {
+    const self = this;
+    Permissions.getPermissionStatus('location')
+    .then((response) => {
+      self.setState({ locationPermission: response });
+    });
+  }
+
+  requestLocationPermission(tripType) {
+    const self = this;
+    Permissions.requestPermission('location')
+    .then((response) => {
+      self.setState({ locationPermission: response });
+
+      if (response === 'authorized') {
+        this.props.startTracking(tripType);
+        Actions.tripRecording();
+      }
+    });
   }
 
   render() {
@@ -48,21 +76,39 @@ class HomeView extends React.Component {
           <Button>korrigieren</Button>
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.requestLocationPermission('business')}
+          >
             <Text style={styles.buttonLabel}>Betriebsfahrt aufzeichnen</Text>
             <Icon name="suitcase" style={styles.buttonIcon} size={30} />
           </TouchableOpacity>
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.requestLocationPermission('work')}
+          >
             <Text style={styles.buttonLabel}>Arbeitsweg aufzeichnen</Text>
             <Icon name="building" style={styles.buttonIcon} size={30} />
           </TouchableOpacity>
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.requestLocationPermission('private')}
+          >
             <Text style={styles.buttonLabel}>Privatfahrt aufzeichnen</Text>
             <Icon name="home" style={styles.buttonIcon} size={30} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={Actions.addLogEntry}
+          >
+            <Text style={styles.buttonLabel}>Eintrag manuell hinzufügen</Text>
+            <Icon name="pencil" style={styles.buttonIcon} size={30} />
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -74,10 +120,15 @@ HomeView.propTypes = {
   // from mapStateToProps:
   calculatedOdometerReading: React.PropTypes.number,
   // from mapDispatchToProps:
+  startTracking: React.PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   calculatedOdometerReading: state.odometer.calculatedOdometerReading,
 });
 
-export default connect(mapStateToProps, null)(HomeView);
+const mapDispatchToProps = dispatch => ({
+  startTracking: bindActionCreators(startTracking, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeView);
