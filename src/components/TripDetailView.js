@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   ScrollView,
-  Text,
   View,
   StyleSheet,
   TextInput,
@@ -11,38 +10,34 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import AwesomeButton from 'react-native-awesome-button';
 import { bindActionCreators } from 'redux';
 import commonStyles from './commonStyles';
-import { addLogEntry } from '../store/actions';
+import { verifyRecordedTrip } from '../store/actions';
 
 const styles = StyleSheet.create({
 
 });
 
-class LogEntryDetailView extends React.Component {
+class TripDetailView extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      startOdometerValue: props.startOdometerValue,
-      endOdometerValue: props.endOdometerValue,
+      startOdometerValue: props.trip.startOdometerValue,
+      endOdometerValue: props.trip.endOdometerValue,
       inputChanged: false,
     };
     this.render = this.render.bind(this);
-    this.addLogEntry = this.addLogEntry.bind(this);
+    this.verifyRecordedTrip = this.verifyRecordedTrip.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      startOdometerValue: nextProps.startOdometerValue,
-      endOdometervalue: nextProps.endOdometerValue,
+      startOdometerValue: nextProps.trip.startOdometerValue,
+      endOdometervalue: nextProps.trip.endOdometerValue,
     });
   }
 
-  addLogEntry() {
-    this.props.addLogEntry({
-      tripType: 'private',
-      startOdometerValue: this.state.startOdometerValue,
-      endOdometerValue: this.state.endOdometerValue,
-    });
+  verifyRecordedTrip() {
+    this.props.verifyRecordedTrip();
   }
 
   render() {
@@ -106,21 +101,19 @@ class LogEntryDetailView extends React.Component {
   }
 }
 
-LogEntryDetailView.propTypes = {
+TripDetailView.propTypes = {
   // from mapStateToProps:
-  startOdometerValue: React.PropTypes.number,
-  endOdometerValue: React.PropTypes.number,
+  trip: React.PropTypes.object,
   // from mapDispatchToProps:
-  addLogEntry: React.PropTypes.func,
+  verifyRecordedTrip: React.PropTypes.func,
 };
 
 const mapStateToProps = state => ({
-  startOdometerValue: state.odometer.odometerReadingAfterLastTrip,
-  endOdometerValue: state.odometer.calculatedOdometerReading,
+  trip: state.trips.trips[state.trips.trips.length - 1],
 });
 
 const mapDispatchToProps = dispatch => ({
-  addLogEntry: bindActionCreators(addLogEntry, dispatch),
+  verifyRecordedTrip: bindActionCreators(verifyRecordedTrip, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogEntryDetailView);
+export default connect(mapStateToProps, mapDispatchToProps)(TripDetailView);

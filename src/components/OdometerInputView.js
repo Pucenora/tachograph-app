@@ -9,6 +9,7 @@ import {
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AwesomeButton from 'react-native-awesome-button';
+import dismissKeyboard from 'react-native-dismiss-keyboard';
 import { bindActionCreators } from 'redux';
 import commonStyles from './commonStyles';
 import { setOdometer } from '../store/actions';
@@ -30,6 +31,7 @@ class OdometerInputView extends React.Component {
   }
 
   setOdometerReading() {
+    dismissKeyboard();
     this.props.setOdometer(this.state.newOdometerValue);
   }
 
@@ -89,7 +91,7 @@ OdometerInputView.propTypes = {
 };
 
 const mapStateToProps = state => ({
-
+  initialized: state.app.initialized,
 });
 
 const mapDispatchToProps = dispatch => ({

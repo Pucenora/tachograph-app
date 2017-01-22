@@ -16,7 +16,7 @@ export function stopTracking() {
 
 function trackingStarted(tripType) {
   return {
-    type: 'TRACKING_STARTED',
+    type: 'TRIP_RECORDING_STARTED',
     tripType,
   };
 }
@@ -34,7 +34,6 @@ export function receiveTripDistanceChanged(tripDistance) {
   return {
     type: 'RECEIVE_TRIP_DISTANCE_CHANGED',
     tripDistance,
-    timestamp: Date.now(),
   };
 }
 

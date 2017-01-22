@@ -1,19 +1,25 @@
 export function setOdometer(odometerReading) {
   return {
-    type: 'SET_ODOMETER',
+    type: 'SET_INITIAL_ODOMETER_OFFSET',
     odometerReading,
-    timestamp: Date.now(),
   };
 }
 
-export function addLogEntry(trip) {
+export function verifyRecordedTrip() {
   return {
-    type: 'SAVE_TRIP',
-    trip,
+    type: 'VERIFY_RECORDED_TRIP',
+  };
+}
+
+export function drawerOpenStateChanged(open) {
+  return {
+    type: 'DRAWER_OPEN_STATE_CHANGED',
+    open,
   };
 }
 
 export default {
   setOdometer,
-  addLogEntry,
+  verifyRecordedTrip,
+  drawerOpenStateChanged,
 };

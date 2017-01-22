@@ -7,14 +7,18 @@
 		"test": "jest"
 	},
 	"dependencies": {
+		"moment": "^2.17.1",
 		"react": "~15.4.0-rc.4",
 		"react-native": "0.40.0",
 		"react-native-awesome-button": "^1.6.0",
 		"react-native-button": "^1.7.1",
+		"react-native-dismiss-keyboard": "^1.0.0",
+		"react-native-drawer": "^2.3.0",
 		"react-native-i18n": "^1.0.0",
 		"react-native-obd2": "^0.0.1",
 		"react-native-permissions": "^0.2.5",
 		"react-native-router-flux": "^3.37.0",
+		"react-native-timeago": "^0.3.0",
 		"react-native-vector-icons": "^4.0.0",
 		"react-redux": "^5.0.2",
 		"redux": "^3.6.0",

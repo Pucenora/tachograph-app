@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 15,
-    backgroundColor: '#AA3366',
+    backgroundColor: '#219bbe',
     alignItems: 'center',
   },
   buttonLabel: {
@@ -66,12 +66,13 @@ class HomeView extends React.Component {
   }
 
   render() {
-    const calculatedOdometerReading = this.props.calculatedOdometerReading;
+    const calculatedOdometerReadingString = Math.round(
+      this.props.trip.endOdometerValue * 10) / 10;
     return (
       <ScrollView style={commonStyles.container} keyboardShouldPersistTaps="always">
         <View style={{ padding: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
           <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
-            Aktueller Tachostand: { calculatedOdometerReading } km
+            Aktueller Tachostand: { calculatedOdometerReadingString } km
           </Text>
           <Button>korrigieren</Button>
         </View>
@@ -105,7 +106,7 @@ class HomeView extends React.Component {
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.button}
-            onPress={Actions.addLogEntry}
+            onPress={Actions.tripDetail}
           >
             <Text style={styles.buttonLabel}>Eintrag manuell hinzufügen</Text>
             <Icon name="pencil" style={styles.buttonIcon} size={30} />
@@ -118,13 +119,13 @@ class HomeView extends React.Component {
 
 HomeView.propTypes = {
   // from mapStateToProps:
-  calculatedOdometerReading: React.PropTypes.number,
+  trip: React.PropTypes.object,
   // from mapDispatchToProps:
   startTracking: React.PropTypes.func,
 };
 
 const mapStateToProps = state => ({
-  calculatedOdometerReading: state.odometer.calculatedOdometerReading,
+  trip: state.trips.trips[state.trips.trips.length - 1],
 });
 
 const mapDispatchToProps = dispatch => ({

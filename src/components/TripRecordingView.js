@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Button from 'react-native-button';
 import { bindActionCreators } from 'redux';
 import { Actions } from 'react-native-router-flux';
 import commonStyles from './commonStyles';
@@ -42,14 +41,12 @@ class TripRecordingView extends React.Component {
 
   stopTracking() {
     this.props.stopTracking();
-    Actions.addLogEntry({
-      mode: 'recorded',
-    });
+    Actions.tripDetail();
   }
 
   render() {
     const calculatedOdometerReadingString = Math.round(
-      this.props.calculatedOdometerReading * 10) / 10;
+      this.props.trip.endOdometerReading * 10) / 10;
     return (
       <ScrollView style={commonStyles.container} keyboardShouldPersistTaps="always">
         <View style={{ padding: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -73,13 +70,13 @@ class TripRecordingView extends React.Component {
 
 TripRecordingView.propTypes = {
   // from mapStateToProps:
-  calculatedOdometerReading: React.PropTypes.number,
+  trip: React.PropTypes.object,
   // from mapDispatchToProps:
   stopTracking: React.PropTypes.func,
 };
 
 const mapStateToProps = state => ({
-  calculatedOdometerReading: state.odometer.calculatedOdometerReading,
+  trip: state.trips.trips[state.trips.trips.length - 1],
 });
 
 const mapDispatchToProps = dispatch => ({
