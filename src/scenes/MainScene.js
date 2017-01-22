@@ -17,31 +17,35 @@ export default (
   <Scene key="main">
     <Scene key="drawer" component={Drawer}>
       <Scene key="drawerTabs">
-        <Scene key="tripRecording">
+        <Scene key="tripRecordingTab">
           <Scene
             key="home"
             component={HomeView}
             title="Tachograph"
+            type="replace"
             sceneStyle={commonNavbarProps.sceneStyle}
           />
           <Scene
             key="tripRecording"
             component={TripRecordingView}
             title="Trip Recording"
+            type="replace"
             sceneStyle={commonNavbarProps.sceneStyle}
           />
           <Scene
             key="tripDetail"
             component={TripDetailView}
             title="Add Trip"
+            type="replace"
             sceneStyle={commonNavbarProps.sceneStyle}
           />
         </Scene>
-        <Scene key="trips">
+        <Scene key="tripsTab">
           <Scene
             key="tripList"
             component={TripListView}
             title="Fahrtenbuch"
+            type="replace"
             sceneStyle={commonNavbarProps.sceneStyle}
           />
         </Scene>

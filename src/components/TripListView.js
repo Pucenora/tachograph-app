@@ -84,6 +84,10 @@ class TripListView extends React.Component {
   }
 
   renderItem(trip) {
+    console.log(trip);
+    if (trip.type === 'initialOffset') {
+      return null;
+    }
     return (
       <View style={styles.itemContainer}>
         <TouchableOpacity
@@ -93,7 +97,7 @@ class TripListView extends React.Component {
         >
           <View>
             <TimeAgo time={trip.startTimestamp} />
-            <Text>{ trip.endOdometerValue - trip.startOdometerValue }</Text>
+            <Text>{ trip.endOdometerValue - trip.startOdometerValue } km</Text>
           </View>
         </TouchableOpacity>
       </View>

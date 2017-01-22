@@ -11,7 +11,7 @@ export default function DrawerReducer(state = INITIAL_STATE, action = {}) {
         ...state,
         scene: action.scene,
         // Close drawer after switching between it's tabs
-        drawerOpen: ['tripRecording', 'tripList', 'manageCars', 'manageDrivers', 'imprint'].indexOf(action.scene.name) >= 0 ? false : state.drawerOpen,
+        drawerOpen: ['tripRecordingTab', 'tripsTab', 'manageCarsTab', 'manageDriversTab', 'imprintTab'].indexOf(action.scene.name) >= 0 ? false : state.drawerOpen,
       };
     case 'DRAWER_OPEN_STATE_CHANGED':
       return {

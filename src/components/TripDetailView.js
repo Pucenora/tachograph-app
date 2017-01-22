@@ -8,6 +8,7 @@ import {
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AwesomeButton from 'react-native-awesome-button';
+import dismissKeyboard from 'react-native-dismiss-keyboard';
 import { bindActionCreators } from 'redux';
 import commonStyles from './commonStyles';
 import { verifyRecordedTrip } from '../store/actions';
@@ -32,11 +33,12 @@ class TripDetailView extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       startOdometerValue: nextProps.trip.startOdometerValue,
-      endOdometervalue: nextProps.trip.endOdometerValue,
+      endOdometerValue: nextProps.trip.endOdometerValue,
     });
   }
 
   verifyRecordedTrip() {
+    dismissKeyboard();
     this.props.verifyRecordedTrip();
   }
 
@@ -89,7 +91,7 @@ class TripDetailView extends React.Component {
               },
               ready: {
                 text: 'Eintragen',
-                onPress: this.addLogEntry,
+                onPress: this.verifyRecordedTrip,
                 backgroundColor: '#FF3366',
               },
             }}

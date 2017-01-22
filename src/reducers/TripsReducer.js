@@ -10,7 +10,7 @@ function updateLastItem(items, updatedItem) {
         ...updatedItem,
       };
     }
-    return items;
+    return item;
   });
 }
 
@@ -54,7 +54,7 @@ export default function TripsReducer(state = INITIAL_STATE, action = {}) {
           endTimestamp: Date.now(),
         }),
       };
-    case 'VERIFY_RECORDED_TRIP': {
+    case 'VERIFIED_RECORDED_TRIP': {
       return {
         ...state,
         trips: updateLastItem(state.trips, {

@@ -70,7 +70,7 @@ class DrawerMenuView extends React.Component {
         </View>
 
         <TouchableOpacity
-          onPress={Actions.tripRecording}
+          onPress={Actions.tripRecordingTab}
           style={[styles.menuItem, { marginTop: 20 }]}
         >
           <View style={styles.menuItemIcon}>
@@ -79,7 +79,7 @@ class DrawerMenuView extends React.Component {
           <Text style={styles.menuItemText}>Neue Fahrt</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={Actions.trips}
+          onPress={Actions.tripsTab}
           style={styles.menuItem}
         >
           <View style={styles.menuItemIcon}>
@@ -88,7 +88,7 @@ class DrawerMenuView extends React.Component {
           <Text style={styles.menuItemText}>Fahrtenbuch</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={Actions.manageCars}
+          onPress={Actions.manageCarsTab}
           style={styles.menuItem}
         >
           <View style={styles.menuItemIcon}>
@@ -97,7 +97,7 @@ class DrawerMenuView extends React.Component {
           <Text style={styles.menuItemText}>Fahrzeuge verwalten</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={Actions.manageDrivers}
+          onPress={Actions.manageDriversTab}
           style={styles.menuItem}
         >
           <View style={styles.menuItemIcon}>
@@ -106,7 +106,7 @@ class DrawerMenuView extends React.Component {
           <Text style={styles.menuItemText}>Fahrer verwalten</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={Actions.imprint}
+          onPress={Actions.imprintTab}
           style={styles.menuItem}
         >
           <View style={styles.menuItemIcon}>
