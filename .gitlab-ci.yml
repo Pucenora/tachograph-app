@@ -1,7 +1,7 @@
 build_android:
   stage: build
   script:
-    - ./build_android.sh
+    - ./fetch-keystore && ./build_android.sh
   tags:
     - android
   only:
