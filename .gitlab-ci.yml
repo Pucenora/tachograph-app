@@ -1,7 +1,7 @@
 build_android:
   stage: build
   script:
-    - ./fetch-keystore && ./build_android.sh
+    - ./fetch-keystore.sh && ./build_android.sh
   tags:
     - android
   only:
@@ -10,7 +10,7 @@ build_android:
 deploy_android_alpha:
   stage: deploy
   script:
-    - TARGET=publishRelease ./fetch-keystore && ./build_android.sh
+    - TARGET=publishRelease ./fetch-keystore.sh && ./build_android.sh
   tags:
     - android
   only:
