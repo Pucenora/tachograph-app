@@ -10,7 +10,7 @@ build_android:
 deploy_android_alpha:
   stage: deploy
   script:
-    - TARGET=publishRelease ./build_android.sh
+    - TARGET=publishRelease ./fetch-keystore && ./build_android.sh
   tags:
     - android
   only:
