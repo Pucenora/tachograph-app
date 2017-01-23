@@ -1,8 +1,11 @@
 apply plugin: "com.android.application"
 apply plugin: 'android-apt'
+apply plugin: 'com.github.triplet.play'
 def AAVersion = '4.2.0'
 
 import com.android.build.OutputFile
+import java.text.SimpleDateFormat
+import groovy.json.JsonSlurper
 
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
@@ -84,6 +87,32 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
+
+def getVersionName() {
+    def packageSlurper = new JsonSlurper()
+    def packageJson = packageSlurper.parse file('../../package.json')
+    return packageJson.version
+}
+
+def getGitRevision() {
+    def process = "../build_number.sh".execute()
+    return process.text.toInteger()
+}
+
+def buildTime() {
+    def df = new SimpleDateFormat("yyyy-MM-dd-HH-mm")
+    return df.format(new Date())
+}
+
+def getFullVersion() {
+    return getVersionName() + "." + getGitRevision() + "_" + buildTime() + "_" + gitSha();
+}
+
+def gitSha() {
+    return 'git rev-parse --short HEAD'.execute().text.trim()
+}
+
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -92,10 +121,18 @@ android {
         applicationId "com.tachographapp"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode getGitRevision()
+        versionName getFullVersion()
         ndk {
             abiFilters "armeabi-v7a", "x86"
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile file(System.getenv("KEYSTORE_FILE") == null ? "release.keystore" : System.getenv("KEYSTORE_FILE"))
+            storePassword System.getenv("KEYSTORE_PASSWORD")
+            keyAlias System.getenv("KEY_ALIAS") == null ? "default" : System.getenv("KEY_ALIAS")
+            keyPassword System.getenv("KEY_PASSWORD")
         }
     }
     splits {
@@ -110,6 +147,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
@@ -123,6 +161,9 @@ android {
                 output.versionCodeOverride =
                         versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
             }
+            output.outputFile = new File(
+                    output.outputFile.parent,
+                    output.outputFile.name.replace("app-", "tachograph-" + getFullVersion() + "-"))
         }
     }
 }
@@ -145,4 +186,11 @@ dependencies {
 task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
+}
+
+play {
+    serviceAccountEmail = 'publisher@api-9102761262169266033-851443.iam.gserviceaccount.com'
+    pk12File = file('google-play-key.p12')
+    track = System.getenv("PLAY_RELEASE_TRACK") == null ? 'alpha' : System.getenv("PLAY_RELEASE_TRACK")
+    uploadImages = true
 }
