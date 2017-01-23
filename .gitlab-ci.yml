@@ -16,20 +16,20 @@ deploy_android_alpha:
   only:
     - android-alpha
 
-build_ios:
-  stage: build
-  script:
-    - ./build_ios.sh
-  tags:
-    - ios
-  only:
-    - master
-
-deploy_ios_alpha:
-  stage: deploy
-  script:
-    - TARGET=publish ./build_ios.sh
-  tags:
-    - ios
-  only:
-    - ios-alpha
+#build_ios:
+#  stage: build
+#   script:
+#     - ./build_ios.sh
+#   tags:
+#     - ios
+#   only:
+#     - master
+#
+# deploy_ios_alpha:
+#   stage: deploy
+#   script:
+#     - TARGET=publish ./build_ios.sh
+#   tags:
+#     - ios
+#   only:
+#     - ios-alpha
