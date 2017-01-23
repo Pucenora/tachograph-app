@@ -60,7 +60,7 @@
 
         <!-- RECEIVERS -->
         <receiver
-            android:name="io.route42.flocker.tracking.LocationProviderChangedReceiver">
+            android:name=".tracking.LocationProviderChangedReceiver">
             <intent-filter>
                 <action android:name="android.location.PROVIDERS_CHANGED" />
             </intent-filter>
