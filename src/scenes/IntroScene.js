@@ -14,7 +14,7 @@ export default (
     <Scene
       key="odometerInput"
       component={OdometerInputView}
-      title="Set Odometer Reading"
+      title="Einrichtung"
       sceneStyle={commonNavbarProps.sceneStyle}
     />
   </Scene>

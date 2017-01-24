@@ -41,8 +41,8 @@ class OdometerInputView extends React.Component {
     return (
       <ScrollView style={commonStyles.container} keyboardShouldPersistTaps="always">
         <View style={{ padding: 10 }}>
-          <Text style={{ fontWeight: 'bold' }}>
-            Please insert the current odometer reading:
+          <Text style={{ fontSize: 20 }}>
+            Bitte geben Sie den derzeitigen Kilometerstand Ihres Fahrzeugs ein:
           </Text>
         </View>
         <View style={commonStyles.inputs}>
@@ -67,11 +67,11 @@ class OdometerInputView extends React.Component {
             transitionDuration={200}
             states={{
               invalid: {
-                text: 'Bestätigen',
+                text: 'Weiter',
                 backgroundColor: '#B69099',
               },
               ready: {
-                text: 'Bestätigen',
+                text: 'Weiter',
                 onPress: this.setOdometerReading,
                 backgroundColor: '#FF3366',
               },
