@@ -4,7 +4,7 @@ import { persistStore, autoRehydrate } from 'redux-persist';
 import thunkMiddleware from 'redux-thunk';
 import {
   receiveTripDistanceChanged,
-} from '../tracking/TrackingActions';
+} from './actions/TrackingActions';
 import reducer from './reducers';
 
 const middlewares = [
@@ -27,7 +27,7 @@ persistStore(store, { storage: AsyncStorage }, (err) => {
     // store.dispatch(setupTrackingService());
 
     DeviceEventEmitter.addListener('TRIP_DISTANCE_CHANGED', (e) => {
-      store.dispatch(receiveTripDistanceChanged(e.tripDistance));
+      store.dispatch(receiveTripDistanceChanged(e.tripDistanceMeters, e.currentAccuracy));
     });
     DeviceEventEmitter.addListener('ANDROID_ACTIVITY_RESUMED', () => {
       // Nothing to do right now

@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { bindActionCreators } from 'redux';
 import { Actions } from 'react-native-router-flux';
 import commonStyles from './commonStyles';
-import { stopTracking } from '../tracking/TrackingActions';
+import { stopTracking } from '../actions/TrackingActions';
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -45,13 +45,23 @@ class TripRecordingView extends React.Component {
   }
 
   render() {
-    const calculatedOdometerReadingString = Math.round(
-      this.props.trip.endOdometerValue * 10) / 10;
+    const calculatedOdometerReadingString = this.props.endOdometerValue / 1000;
+    const tripDistanceMeters = Math.round(this.props.tripDistanceMeters)
     return (
       <ScrollView style={commonStyles.container} keyboardShouldPersistTaps="always">
         <View style={{ padding: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
           <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
-            Aktueller Tachostand: { calculatedOdometerReadingString } km
+            Aktueller Tachostand: { calculatedOdometerReadingString }km
+          </Text>
+        </View>
+        <View>
+          <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
+            Aktuelle Trip: { tripDistanceMeters }m
+          </Text>
+        </View>
+        <View>
+          <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
+            Aktuelle Genauigkeit: { this.props.currentAccuracy }m
           </Text>
         </View>
         <View style={styles.buttonContainer}>
@@ -70,13 +80,17 @@ class TripRecordingView extends React.Component {
 
 TripRecordingView.propTypes = {
   // from mapStateToProps:
-  trip: React.PropTypes.object,
+  endOdometerValue: React.PropTypes.number.isRequired,
+  currentAccuracy: React.PropTypes.number.isRequired,
+  tripDistanceMeters: React.PropTypes.number.isRequired,
   // from mapDispatchToProps:
-  stopTracking: React.PropTypes.func,
+  stopTracking: React.PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  trip: state.trips.trips[state.trips.trips.length - 1],
+  endOdometerValue: state.trips.trips[state.trips.trips.length - 1].endOdometerValue,
+  tripDistanceMeters: state.tracking.tripDistanceMeters,
+  currentAccuracy: state.tracking.currentAccuracy,
 });
 
 const mapDispatchToProps = dispatch => ({

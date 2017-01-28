@@ -10,7 +10,7 @@ import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { drawerOpenStateChanged } from '../store/actions';
+import { drawerOpenStateChanged } from '../actions';
 
 const styles = StyleSheet.create({
   container: {

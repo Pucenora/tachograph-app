@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 import { REHYDRATE } from 'redux-persist/constants';
-import TripsReducer from '../reducers/TripsReducer';
-import DrawerReducer from '../reducers/DrawerReducer';
+import TrackingReducer from './TrackingReducer';
+import TripsReducer from './TripsReducer';
+import DrawerReducer from './DrawerReducer';
 
 function appReducer(state = {}, action) {
   if (action.type === REHYDRATE) {
@@ -17,4 +18,5 @@ export default combineReducers({
   app: appReducer,
   trips: TripsReducer,
   drawer: DrawerReducer,
+  tracking: TrackingReducer,
 });

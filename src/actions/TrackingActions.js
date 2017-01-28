@@ -1,5 +1,5 @@
 import { Platform } from 'react-native';
-import TrackingManager from './TrackingManager';
+import TrackingManager from '../TrackingManager';
 
 function trackingStopped() {
   return {
@@ -30,10 +30,11 @@ export function startTracking(tripType) {
   };
 }
 
-export function receiveTripDistanceChanged(tripDistance) {
+export function receiveTripDistanceChanged(tripDistanceMeters, currentAccuracy) {
   return {
     type: 'RECEIVE_TRIP_DISTANCE_CHANGED',
-    tripDistance,
+    tripDistanceMeters,
+    currentAccuracy,
   };
 }
 

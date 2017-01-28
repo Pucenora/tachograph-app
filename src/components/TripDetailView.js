@@ -11,7 +11,7 @@ import AwesomeButton from 'react-native-awesome-button';
 import dismissKeyboard from 'react-native-dismiss-keyboard';
 import { bindActionCreators } from 'redux';
 import commonStyles from './commonStyles';
-import { verifyRecordedTrip } from '../store/actions';
+import { verifyRecordedTrip } from '../actions';
 
 const styles = StyleSheet.create({
 

@@ -4,7 +4,7 @@ import { DefaultRenderer } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import DrawerMenuView from './DrawerMenuView';
-import { drawerOpenStateChanged } from '../store/actions';
+import { drawerOpenStateChanged } from '../actions';
 
 class Drawer extends React.Component {
   render() {

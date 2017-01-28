@@ -29,8 +29,9 @@ public class TrackingModule extends ReactContextBaseJavaModule {
             @Override
             public void onReceive(Context context, Intent intent) {
                 Log.d(TAG, "Trip distance updated");
-                double tripDistance = intent.getDoubleExtra("tripDistance", 0);
-                sendDistanceChangedEvent(tripDistance);
+                double tripDistance = intent.getDoubleExtra("tripDistanceMeters", 0);
+                float currentAccuracy = intent.getFloatExtra("currentAccuracy", -1);
+                sendDistanceChangedEvent(tripDistance, currentAccuracy);
             }
         }, new IntentFilter(LocationTrackingController.EVENT_TRIP_DISTANCE_CHANGED));
 
@@ -68,10 +69,11 @@ public class TrackingModule extends ReactContextBaseJavaModule {
         getReactApplicationContext().startService(intent);
     }
 
-    private void sendDistanceChangedEvent(double tripDistance) {
+    private void sendDistanceChangedEvent(double tripDistanceMeters, float currentAccuracy) {
 
         WritableMap params = Arguments.createMap();
-        params.putDouble("tripDistance", tripDistance);
+        params.putDouble("tripDistanceMeters", tripDistanceMeters);
+        params.putDouble("currentAccuracy", currentAccuracy);
 
         getReactApplicationContext()
                 .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)

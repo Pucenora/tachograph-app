@@ -8,10 +8,8 @@ import {
   TouchableOpacity,
   Vibration,
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import TimeAgo from 'react-native-timeago';
-import { bindActionCreators } from 'redux';
 
 const { width } = Dimensions.get('window');
 

@@ -13,7 +13,7 @@ import { bindActionCreators } from 'redux';
 import Permissions from 'react-native-permissions';
 import { Actions } from 'react-native-router-flux';
 import commonStyles from './commonStyles';
-import { startTracking } from '../tracking/TrackingActions';
+import { startTracking } from '../actions/TrackingActions';
 
 const styles = StyleSheet.create({
   buttonContainer: {

@@ -52,7 +52,7 @@ public class LocationTrackingController implements LostApiClient.ConnectionCallb
         this.locationUpdatedIntent = PendingIntent.getService(context, 0, intent, 0);
         this.locationRequest = LocationRequest.create();
         this.locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        this.locationRequest.setInterval(1);
+        this.locationRequest.setInterval(10);
     }
 
     @AfterInject
@@ -122,18 +122,34 @@ public class LocationTrackingController implements LostApiClient.ConnectionCallb
 
         for (Location location : locationResult.getLocations()) {
 
-            if (!location.hasAccuracy() || location.getAccuracy() > 20) {
+            if (!location.hasAccuracy() || location.getAccuracy() < 0 || location.getAccuracy() > 10) {
                 Log.d(TAG, "Skipping location with bad accuracy: " + location.getAccuracy());
                 continue;
             }
-            if (lastLocation != null) {
-                currentTripDistanceMeters += lastLocation.distanceTo(location);
+
+            if (lastLocation == null) {
+              lastLocation = location;
+              continue;
             }
+
+            double distanceMeters = lastLocation.distanceTo(location);
+
+            if (distanceMeters < 10) {
+              Log.d(TAG, "Skipping location because distance to last location is too small: " + distanceMeters + "m");
+              continue;
+            }
+
+            currentTripDistanceMeters += distanceMeters;
             lastLocation = location;
         }
 
+        if (lastLocation == null) {
+          return;
+        }
+
         Intent tripDistanceChangedIntent = new Intent(EVENT_TRIP_DISTANCE_CHANGED);
-        tripDistanceChangedIntent.putExtra("tripDistance", currentTripDistanceMeters / 1000);
+        tripDistanceChangedIntent.putExtra("tripDistanceMeters", currentTripDistanceMeters);
+        tripDistanceChangedIntent.putExtra("currentAccuracy", lastLocation.getAccuracy());
 
         LocalBroadcastManager.getInstance(context).sendBroadcast(tripDistanceChangedIntent);
     }

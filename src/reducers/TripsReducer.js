@@ -4,7 +4,7 @@ const INITIAL_STATE = {
 
 function updateLastItem(items, updatedItem) {
   return items.map((item, index) => {
-    if (index === items.length) {
+    if (index === items.length - 1) {
       return {
         ...item,
         ...updatedItem,
@@ -23,7 +23,7 @@ export default function TripsReducer(state = INITIAL_STATE, action = {}) {
         ...state,
         trips: [{
           type: 'initialOffset',
-          endOdometerValue: action.odometerReading,
+          endOdometerValue: action.odometerReading * 1000,
           endTimestamp: Date.now(),
           verificationTimestamp: Date.now(),
         }],
@@ -46,11 +46,12 @@ export default function TripsReducer(state = INITIAL_STATE, action = {}) {
       };
     }
     case 'RECEIVE_TRIP_DISTANCE_CHANGED':
+      console.log(`RECEIVE_TRIP_DISTANCE_CHANGED: ${action.tripDistanceMeters}m (acc: ${action.currentAccuracy}m)`);
       return {
         ...state,
         trips: updateLastItem(state.trips, {
           endOdometerValue:
-            state.trips[state.trips.length - 1].startOdometerValue + action.tripDistance,
+            state.trips[state.trips.length - 1].startOdometerValue + action.tripDistanceMeters,
           endTimestamp: Date.now(),
         }),
       };

@@ -12,7 +12,7 @@ import AwesomeButton from 'react-native-awesome-button';
 import dismissKeyboard from 'react-native-dismiss-keyboard';
 import { bindActionCreators } from 'redux';
 import commonStyles from './commonStyles';
-import { setOdometer } from '../store/actions';
+import { setOdometer } from '../actions';
 
 const styles = StyleSheet.create({
 
