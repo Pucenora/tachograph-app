@@ -9,14 +9,13 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import AwesomeButton from 'react-native-awesome-button';
 import dismissKeyboard from 'react-native-dismiss-keyboard';
 import DatePicker from 'react-native-datepicker';
 import { bindActionCreators } from 'redux';
 import { Actions } from 'react-native-router-flux';
 import moment from 'moment';
 import commonStyles from './commonStyles';
-import { addTrip } from '../actions/TripActions';
+import { addTrip, updateTrip } from '../actions/TripActions';
 
 const styles = StyleSheet.create({
   sectionHeader: {
@@ -56,10 +55,11 @@ class TripBoundsView extends React.Component {
     trip: React.PropTypes.object,
     // from mapDispatchToProps:
     addTrip: React.PropTypes.func.isRequired,
+    updateTrip: React.PropTypes.func.isRequired,
   };
 
   static defaultProps = {
-    tripIndex: -1,
+    tripIndex: null,
   };
 
   constructor(props) {
@@ -70,7 +70,7 @@ class TripBoundsView extends React.Component {
       startOdometerValue: props.trip.startOdometerValue,
       endOdometerValue: props.trip.endOdometerValue,
     };
-    this.addPrivateTrip = this.addPrivateTrip.bind(this);
+    this.saveTrip = this.saveTrip.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -82,16 +82,28 @@ class TripBoundsView extends React.Component {
     });
   }
 
-  addPrivateTrip() {
+  saveTrip(tripType) {
     dismissKeyboard();
-    this.props.addTrip({
-      ...this.props.trip,
-      startTimestamp: this.state.startTimestamp,
-      endTimestamp: this.state.endTimestamp,
-      startOdometerValue: this.state.startOdometerValue,
-      endOdometerValue: this.state.endOdometerValue,
-      tripType: 'private',
-    });
+    if (this.props.tripIndex) {
+      this.props.updateTrip(this.props.tripIndex, {
+        ...this.props.trip,
+        startTimestamp: this.state.startTimestamp,
+        endTimestamp: this.state.endTimestamp,
+        startOdometerValue: this.state.startOdometerValue,
+        endOdometerValue: this.state.endOdometerValue,
+        type: tripType,
+      });
+    } else {
+      this.props.addTrip({
+        ...this.props.trip,
+        startTimestamp: this.state.startTimestamp,
+        endTimestamp: this.state.endTimestamp,
+        startOdometerValue: this.state.startOdometerValue,
+        endOdometerValue: this.state.endOdometerValue,
+        type: tripType,
+      });
+    }
+
     Actions.pop();
   }
 
@@ -221,14 +233,14 @@ class TripBoundsView extends React.Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.tripTypeButton}
-            onPress={Actions.tripRoute}
+            onPress={() => this.saveTrip('commute')}
           >
             <Text style={styles.tripButtonLabel}>Arbeitsweg</Text>
             <Icon name="building" style={styles.tripButtonIcon} size={30} />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.tripTypeButton}
-            onPress={this.addPrivateTrip}
+            onPress={() => this.saveTrip('private')}
           >
             <Text style={styles.tripButtonLabel}>Privatfahrt</Text>
             <Icon name="home" style={styles.tripButtonIcon} size={30} />
@@ -245,18 +257,21 @@ const mapStateToProps = (state, ownProps) => {
       trip: ownProps.trip,
     };
   }
-  if (ownProps.tripIndex) {
+  if (Number.isInteger(ownProps.tripIndex) && ownProps.tripIndex >= 0) {
     return {
       trip: state.trips.trips[ownProps.tripIndex],
+      tripIndex: ownProps.tripIndex,
     };
   }
   return {
     trip: state.trips.trips[state.trips.trips.length - 1],
+    tripIndex: state.trips.trips.length - 1,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   addTrip: bindActionCreators(addTrip, dispatch),
+  updateTrip: bindActionCreators(updateTrip, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TripBoundsView);

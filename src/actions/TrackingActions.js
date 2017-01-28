@@ -1,4 +1,5 @@
 import { Platform } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import TrackingManager from '../TrackingManager';
 
 function trackingStopped() {
@@ -11,6 +12,9 @@ export function stopTracking() {
   return (dispatch) => {
     dispatch(trackingStopped());
     TrackingManager.stopTracking();
+    Actions.tripBounds({
+      type: 'replace',
+    });
   };
 }
 

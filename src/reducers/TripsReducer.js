@@ -31,7 +31,6 @@ export default function TripsReducer(state = INITIAL_STATE, action = {}) {
     case 'TRIP_RECORDING_STARTED': {
       const lastOdometerValue = state.trips[state.trips.length - 1].endOdometerValue;
       const newTrip = {
-        type: action.tripType,
         startTimestamp: Date.now(),
         startOdometerValue: lastOdometerValue,
         endTimestamp: Date.now(),
@@ -71,6 +70,20 @@ export default function TripsReducer(state = INITIAL_STATE, action = {}) {
           ...state.trips,
           action.trip,
         ],
+      };
+    }
+    case 'UPDATE_TRIP': {
+      return {
+        ...state,
+        trips: state.trips.map((trip, index) => {
+          if (index === action.tripIndex) {
+            return {
+              ...trip,
+              ...action.updatedTrip,
+            };
+          }
+          return trip;
+        }),
       };
     }
     default:

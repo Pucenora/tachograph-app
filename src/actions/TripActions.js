@@ -12,14 +12,24 @@
 //   };
 // }
 
-export function addTrip(trip) {
+export function addTrip(trip, tripIndex) {
   return {
     type: 'ADD_TRIP',
     trip,
+    tripIndex,
+  };
+}
+
+export function updateTrip(tripIndex, updatedTrip) {
+  return {
+    type: 'UPDATE_TRIP',
+    tripIndex,
+    updatedTrip,
   };
 }
 
 export default {
   addTrip,
+  updateTrip,
   // verifyRecordedTrip,
 };

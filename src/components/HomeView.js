@@ -45,7 +45,7 @@ class HomeView extends React.Component {
 
   constructor(props) {
     super(props);
-    this.requestLocationPermission = this.requestLocationPermission.bind(this);
+    this.startTracking = this.startTracking.bind(this);
     this.state = {
       locationPermission: 'undetermined',
     };
@@ -59,7 +59,7 @@ class HomeView extends React.Component {
     });
   }
 
-  requestLocationPermission() {
+  startTracking() {
     const self = this;
     Permissions.requestPermission('location')
     .then((response) => {
@@ -85,7 +85,7 @@ class HomeView extends React.Component {
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => this.requestLocationPermission()}
+            onPress={this.startTracking}
           >
             <Text style={styles.buttonLabel}>Fahrt automatisch aufzeichnen</Text>
             <Icon name="cogs" style={styles.buttonIcon} size={30} />

@@ -18,7 +18,7 @@ const commonNavbarProps = {
 export default (
   <Scene key="main">
     <Scene key="drawer" component={Drawer}>
-      <Scene key="drawerTabs">
+      <Scene key="drawerTabs" tabs>
         <Scene key="tripRecordingTab">
           <Scene
             key="home"

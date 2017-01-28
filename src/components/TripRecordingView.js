@@ -41,7 +41,6 @@ class TripRecordingView extends React.Component {
 
   stopTracking() {
     this.props.stopTracking();
-    Actions.tripDetail();
   }
 
   render() {
