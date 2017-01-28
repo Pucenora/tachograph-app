@@ -7,6 +7,16 @@ import DrawerMenuView from './DrawerMenuView';
 import { drawerOpenStateChanged } from '../actions';
 
 class Drawer extends React.Component {
+
+  static propTypes = {
+    navigationState: React.PropTypes.object.isRequired,
+    onNavigate: React.PropTypes.func.isRequired,
+    // from mapStateToProps:
+    drawerOpen: React.PropTypes.bool.isRequired,
+    // from mapDispatchToProps:
+    drawerOpenStateChanged: React.PropTypes.func.isRequired,
+  }
+
   render() {
     const state = this.props.navigationState;
     const children = state.children;
@@ -21,7 +31,7 @@ class Drawer extends React.Component {
         openDrawerOffset={0.2}
         panCloseMask={0.2}
         negotiatePan
-        tweenHandler={(ratio) => ({
+        tweenHandler={ratio => ({
           main: { opacity: Math.max(0.54, 1 - ratio) },
         })}
       >
@@ -42,14 +52,5 @@ function mapDispatchToProps(dispatch) {
     drawerOpenStateChanged: bindActionCreators(drawerOpenStateChanged, dispatch),
   };
 }
-
-Drawer.propTypes = {
-  navigationState: React.PropTypes.object,
-  onNavigate: React.PropTypes.func,
-  // from mapStateToProps:
-  drawerOpen: React.PropTypes.bool,
-  // from mapDispatchToProps:
-  drawerOpenStateChanged: React.PropTypes.func,
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Drawer);
