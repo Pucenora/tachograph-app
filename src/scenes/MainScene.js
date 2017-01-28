@@ -1,7 +1,6 @@
 import React from 'react';
 import { Navigator } from 'react-native';
-import { Scene, Switch } from 'react-native-router-flux';
-import { connect } from 'react-redux';
+import { Scene } from 'react-native-router-flux';
 import HomeView from '../components/HomeView';
 import TripRecordingView from '../components/TripRecordingView';
 import TripBoundsView from '../components/TripBoundsView';
@@ -19,24 +18,8 @@ const commonNavbarProps = {
 export default (
   <Scene key="main">
     <Scene key="drawer" component={Drawer}>
-      <Scene
-        key="drawerTabs"
-        tabs
-      >
-        <Scene
-          key="newTripTab"
-          tabs
-          component={connect(state =>
-            ({
-              isRecording: state.tracking.isRecording,
-            }))(Switch)}
-          selector={(props) => {
-            if (props.isRecording) {
-              return 'tripRecording';
-            }
-            return 'home';
-          }}
-        >
+      <Scene key="drawerTabs" tabs>
+        <Scene key="newTripTab">
           <Scene
             key="home"
             component={HomeView}
