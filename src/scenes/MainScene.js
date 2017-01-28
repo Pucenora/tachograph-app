@@ -41,13 +41,13 @@ export default (
           <Scene
             key="tripRoute"
             component={TripRouteView}
-            title="Trip Route"
+            title="Fahrtstrecke"
             sceneStyle={commonNavbarProps.sceneStyle}
           />
           <Scene
             key="tripPurpose"
             component={TripPurposeView}
-            title="Trip Purpose"
+            title="Reisezweck"
             sceneStyle={commonNavbarProps.sceneStyle}
           />
         </Scene>
@@ -56,6 +56,24 @@ export default (
             key="tripList"
             component={TripListView}
             title="Fahrtenbuch"
+            sceneStyle={commonNavbarProps.sceneStyle}
+          />
+          <Scene
+            key="tripEditBounds"
+            component={TripBoundsView}
+            title="Fahrt bearbeiten"
+            sceneStyle={commonNavbarProps.sceneStyle}
+          />
+          <Scene
+            key="tripEditRoute"
+            component={TripRouteView}
+            title="Fahrtstrecke bearbeiten"
+            sceneStyle={commonNavbarProps.sceneStyle}
+          />
+          <Scene
+            key="tripEditPurpose"
+            component={TripPurposeView}
+            title="Reisezweck bearbeiten"
             sceneStyle={commonNavbarProps.sceneStyle}
           />
         </Scene>

@@ -52,7 +52,7 @@ class TripBoundsView extends React.Component {
   static propTypes = {
     tripIndex: React.PropTypes.number,
     // from mapStateToProps:
-    trip: React.PropTypes.object,
+    trip: React.PropTypes.object.isRequired,
     // from mapDispatchToProps:
     addTrip: React.PropTypes.func.isRequired,
     updateTrip: React.PropTypes.func.isRequired,

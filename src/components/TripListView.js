@@ -9,6 +9,7 @@ import {
   Vibration,
 } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import TimeAgo from 'react-native-timeago';
 
 const { width } = Dimensions.get('window');
@@ -52,7 +53,7 @@ class TripListView extends React.Component {
     });
   }
 
-  renderItem(trip) {
+  renderItem(trip, sectionID, rowId) {
     console.log(trip);
     if (trip.type === 'initialOffset') {
       return (
@@ -72,18 +73,15 @@ class TripListView extends React.Component {
       );
     }
     return (
-      <View style={styles.itemContainer}>
-        <TouchableOpacity
-          onPress={() => {
-            Vibration.vibrate([0, 50]);
-          }}
-        >
-          <View>
-            <TimeAgo time={trip.startTimestamp} />
-            <Text>{ trip.endOdometerValue - trip.startOdometerValue } km</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        style={styles.itemContainer}
+        onPress={() => Actions.tripEditBounds({ tripIndex: parseInt(rowId, 10) })}
+      >
+        <View>
+          <TimeAgo time={trip.startTimestamp} />
+          <Text>{ trip.endOdometerValue - trip.startOdometerValue } km</Text>
+        </View>
+      </TouchableOpacity>
     );
   }
 
@@ -93,7 +91,7 @@ class TripListView extends React.Component {
         style={styles.list}
         contentContainerStyle={styles.listContent}
         dataSource={this.state.dataSource}
-        renderRow={rowData => this.renderItem(rowData)}
+        renderRow={this.renderItem}
         enableEmptySections
       />
     );
