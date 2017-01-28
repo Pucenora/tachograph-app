@@ -51,7 +51,7 @@ export default function TripsReducer(state = INITIAL_STATE, action = {}) {
         trips: updateLastItem(state.trips, {
           endOdometerValue:
             state.trips[state.trips.length - 1].startOdometerValue
-            + (action.tripDistanceMeters / 1000),
+            + Math.floor(action.tripDistanceMeters / 1000),
           endTimestamp: Date.now(),
         }),
       };
