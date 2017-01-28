@@ -23,7 +23,7 @@ export default function TripsReducer(state = INITIAL_STATE, action = {}) {
         ...state,
         trips: [{
           type: 'initialOffset',
-          endOdometerValue: action.odometerReading * 1000,
+          endOdometerValue: action.odometerReading,
           endTimestamp: Date.now(),
           verificationTimestamp: Date.now(),
         }],
@@ -51,16 +51,26 @@ export default function TripsReducer(state = INITIAL_STATE, action = {}) {
         ...state,
         trips: updateLastItem(state.trips, {
           endOdometerValue:
-            state.trips[state.trips.length - 1].startOdometerValue + action.tripDistanceMeters,
+            state.trips[state.trips.length - 1].startOdometerValue
+            + (action.tripDistanceMeters / 1000),
           endTimestamp: Date.now(),
         }),
       };
-    case 'VERIFIED_RECORDED_TRIP': {
+    // case 'VERIFIED_RECORDED_TRIP': {
+    //   return {
+    //     ...state,
+    //     trips: updateLastItem(state.trips, {
+    //       verificationTimestamp: Date.now(),
+    //     }),
+    //   };
+    // }
+    case 'ADD_TRIP': {
       return {
         ...state,
-        trips: updateLastItem(state.trips, {
-          verificationTimestamp: Date.now(),
-        }),
+        trips: [
+          ...state.trips,
+          action.trip,
+        ],
       };
     }
     default:

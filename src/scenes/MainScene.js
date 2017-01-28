@@ -3,7 +3,9 @@ import { Navigator } from 'react-native';
 import { Scene } from 'react-native-router-flux';
 import HomeView from '../components/HomeView';
 import TripRecordingView from '../components/TripRecordingView';
-import TripDetailView from '../components/TripDetailView';
+import TripBoundsView from '../components/TripBoundsView';
+import TripRouteView from '../components/TripRouteView';
+import TripPurposeView from '../components/TripPurposeView';
 import TripListView from '../components/TripListView';
 import Drawer from '../components/Drawer';
 
@@ -22,21 +24,30 @@ export default (
             key="home"
             component={HomeView}
             title="Tachograph"
-            type="replace"
             sceneStyle={commonNavbarProps.sceneStyle}
           />
           <Scene
             key="tripRecording"
             component={TripRecordingView}
             title="Trip Recording"
-            type="replace"
             sceneStyle={commonNavbarProps.sceneStyle}
           />
           <Scene
-            key="tripDetail"
-            component={TripDetailView}
-            title="Add Trip"
-            type="replace"
+            key="tripBounds"
+            component={TripBoundsView}
+            title="Trip Bounds"
+            sceneStyle={commonNavbarProps.sceneStyle}
+          />
+          <Scene
+            key="tripRoute"
+            component={TripRouteView}
+            title="Trip Route"
+            sceneStyle={commonNavbarProps.sceneStyle}
+          />
+          <Scene
+            key="tripPurpose"
+            component={TripPurposeView}
+            title="Trip Purpose"
             sceneStyle={commonNavbarProps.sceneStyle}
           />
         </Scene>
@@ -45,7 +56,6 @@ export default (
             key="tripList"
             component={TripListView}
             title="Fahrtenbuch"
-            type="replace"
             sceneStyle={commonNavbarProps.sceneStyle}
           />
         </Scene>

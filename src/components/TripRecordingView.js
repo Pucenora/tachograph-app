@@ -45,7 +45,7 @@ class TripRecordingView extends React.Component {
   }
 
   render() {
-    const calculatedOdometerReadingString = this.props.endOdometerValue / 1000;
+    const calculatedOdometerReadingString = this.props.endOdometerValue;
     const tripDistanceMeters = Math.round(this.props.tripDistanceMeters)
     return (
       <ScrollView style={commonStyles.container} keyboardShouldPersistTaps="always">

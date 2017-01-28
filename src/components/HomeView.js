@@ -36,6 +36,13 @@ const styles = StyleSheet.create({
 
 class HomeView extends React.Component {
 
+  static propTypes = {
+    // from mapStateToProps:
+    currentOdometerValue: React.PropTypes.number.isRequired,
+    // from mapDispatchToProps:
+    startTracking: React.PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.requestLocationPermission = this.requestLocationPermission.bind(this);
@@ -52,22 +59,21 @@ class HomeView extends React.Component {
     });
   }
 
-  requestLocationPermission(tripType) {
+  requestLocationPermission() {
     const self = this;
     Permissions.requestPermission('location')
     .then((response) => {
       self.setState({ locationPermission: response });
 
       if (response === 'authorized') {
-        this.props.startTracking(tripType);
+        this.props.startTracking();
         Actions.tripRecording();
       }
     });
   }
 
   render() {
-    const calculatedOdometerReadingString = Math.round(
-      this.props.trip.endOdometerValue * 10) / 10;
+    const calculatedOdometerReadingString = Math.round(this.props.currentOdometerValue);
     return (
       <ScrollView style={commonStyles.container} keyboardShouldPersistTaps="always">
         <View style={{ padding: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -79,36 +85,22 @@ class HomeView extends React.Component {
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => this.requestLocationPermission('business')}
+            onPress={() => this.requestLocationPermission()}
           >
-            <Text style={styles.buttonLabel}>Betriebsfahrt aufzeichnen</Text>
-            <Icon name="suitcase" style={styles.buttonIcon} size={30} />
+            <Text style={styles.buttonLabel}>Fahrt automatisch aufzeichnen</Text>
+            <Icon name="cogs" style={styles.buttonIcon} size={30} />
           </TouchableOpacity>
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => this.requestLocationPermission('work')}
+            onPress={() => Actions.tripBounds({
+              trip: {
+                startOdometerValue: this.props.currentOdometerValue,
+              },
+            })}
           >
-            <Text style={styles.buttonLabel}>Arbeitsweg aufzeichnen</Text>
-            <Icon name="building" style={styles.buttonIcon} size={30} />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => this.requestLocationPermission('private')}
-          >
-            <Text style={styles.buttonLabel}>Privatfahrt aufzeichnen</Text>
-            <Icon name="home" style={styles.buttonIcon} size={30} />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={Actions.tripDetail}
-          >
-            <Text style={styles.buttonLabel}>Eintrag manuell hinzufügen</Text>
+            <Text style={styles.buttonLabel}>Fahrt manuell hinzufügen</Text>
             <Icon name="pencil" style={styles.buttonIcon} size={30} />
           </TouchableOpacity>
         </View>
@@ -117,15 +109,8 @@ class HomeView extends React.Component {
   }
 }
 
-HomeView.propTypes = {
-  // from mapStateToProps:
-  trip: React.PropTypes.object,
-  // from mapDispatchToProps:
-  startTracking: React.PropTypes.func,
-};
-
 const mapStateToProps = state => ({
-  trip: state.trips.trips[state.trips.trips.length - 1],
+  currentOdometerValue: state.trips.trips[state.trips.trips.length - 1].endOdometerValue,
 });
 
 const mapDispatchToProps = dispatch => ({

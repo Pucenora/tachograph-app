@@ -24,44 +24,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   listContent: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'flex-start',
-    paddingTop: 30,
-    paddingLeft: 5,
-    paddingRight: 5,
-    paddingBottom: 30,
+
   },
-  unselectedItem: {
-  //  backgroundColor: colors.appItemBackgroundColor,
-    margin: unselectedItemMargin,
-    width: unselectedItemSize,
-    height: unselectedItemSize,
-  },
-  selectedItem: {
-  //  backgroundColor: colors.appItemBackgroundColor,
-    margin: selectedItemMargin,
-    width: selectedItemSize,
-    height: selectedItemSize,
-  },
-  appIcon: {
-    width: 70,
-    height: 70,
-    alignSelf: 'center',
-    marginTop: 40,
-    marginBottom: 15,
-  },
-  appName: {
-    textAlign: 'center',
-//    color: colors.appItemTextColor,
-    fontSize: 22,
-    marginBottom: 5,
-  },
-  appStatusContainer: {
-    alignItems: 'center',
-  },
-  appStatus: {
-    flexDirection: 'row',
+  itemContainer: {
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderBottomWidth: 1,
+    borderColor: '#e4e4e4',
   },
 });
 
@@ -84,7 +55,21 @@ class TripListView extends React.Component {
   renderItem(trip) {
     console.log(trip);
     if (trip.type === 'initialOffset') {
-      return null;
+      return (
+        <View style={styles.itemContainer}>
+          <TouchableOpacity
+            onPress={() => {
+              Vibration.vibrate([0, 50]);
+            }}
+          >
+            <View>
+              <TimeAgo time={trip.endTimestamp} />
+              <Text style={{ fontStyle: 'italic' }}>Übertrag</Text>
+              <Text style={{ fontStyle: 'italic' }}>{ trip.endOdometerValue } km</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      );
     }
     return (
       <View style={styles.itemContainer}>
