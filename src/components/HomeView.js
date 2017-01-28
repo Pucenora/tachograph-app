@@ -32,6 +32,18 @@ const styles = StyleSheet.create({
   buttonIcon: {
     color: '#F0F0F0',
   },
+  infoSection: {
+    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  infoLabel: {
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  infoValue: {
+    fontSize: 20,
+  },
 });
 
 class HomeView extends React.Component {
@@ -76,11 +88,13 @@ class HomeView extends React.Component {
     const calculatedOdometerReadingString = Math.round(this.props.currentOdometerValue);
     return (
       <ScrollView style={commonStyles.container} keyboardShouldPersistTaps="always">
-        <View style={{ padding: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
-            Aktueller Tachostand: { calculatedOdometerReadingString } km
+        <View style={styles.infoSection}>
+          <Text style={styles.infoLabel}>
+            Berechneter Tachostand:
           </Text>
-          <Button>korrigieren</Button>
+          <Text style={styles.infoValue}>
+            { calculatedOdometerReadingString } km
+          </Text>
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity

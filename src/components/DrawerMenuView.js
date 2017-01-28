@@ -70,7 +70,7 @@ class DrawerMenuView extends React.Component {
         </View>
 
         <TouchableOpacity
-          onPress={Actions.tripRecordingTab}
+          onPress={Actions.newTripTab}
           style={[styles.menuItem, { marginTop: 20 }]}
         >
           <View style={styles.menuItemIcon}>

@@ -9,7 +9,6 @@ import {
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { bindActionCreators } from 'redux';
-import { Actions } from 'react-native-router-flux';
 import commonStyles from './commonStyles';
 import { stopTracking } from '../actions/TrackingActions';
 
@@ -30,6 +29,18 @@ const styles = StyleSheet.create({
   buttonIcon: {
     color: '#F0F0F0',
   },
+  infoSection: {
+    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  infoLabel: {
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  infoValue: {
+    fontSize: 20,
+  },
 });
 
 class TripRecordingView extends React.Component {
@@ -44,23 +55,32 @@ class TripRecordingView extends React.Component {
   }
 
   render() {
-    const calculatedOdometerReadingString = this.props.endOdometerValue;
-    const tripDistanceMeters = Math.round(this.props.tripDistanceMeters)
+    const calculatedOdometerReadingString = Math.round(this.props.endOdometerValue);
+    const tripDistanceMeters = Math.round(this.props.tripDistanceMeters);
     return (
       <ScrollView style={commonStyles.container} keyboardShouldPersistTaps="always">
-        <View style={{ padding: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
-            Aktueller Tachostand: { calculatedOdometerReadingString }km
+        <View style={styles.infoSection}>
+          <Text style={styles.infoLabel}>
+            Aktuellere Fahrt:
+          </Text>
+          <Text style={styles.infoValue}>
+            { tripDistanceMeters } m
           </Text>
         </View>
-        <View>
-          <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
-            Aktuelle Trip: { tripDistanceMeters }m
+        <View style={styles.infoSection}>
+          <Text style={styles.infoLabel}>
+            Berechneter Tachostand:
+          </Text>
+          <Text style={styles.infoValue}>
+            { calculatedOdometerReadingString } km
           </Text>
         </View>
-        <View>
-          <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
-            Aktuelle Genauigkeit: { this.props.currentAccuracy }m
+        <View style={styles.infoSection}>
+          <Text style={styles.infoLabel}>
+            GPS-Genauigkeit:
+          </Text>
+          <Text style={styles.infoValue}>
+            { this.props.currentAccuracy < 0 ? 'unbekannt' : `${this.props.currentAccuracy} m` }
           </Text>
         </View>
         <View style={styles.buttonContainer}>
