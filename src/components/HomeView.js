@@ -124,7 +124,8 @@ class HomeView extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  currentOdometerValue: state.trips.trips[state.trips.trips.length - 1].endOdometerValue,
+  currentOdometerValue:
+    state.trips.trips.default[state.trips.trips.default.length - 1].endOdometerValue,
 });
 
 const mapDispatchToProps = dispatch => ({

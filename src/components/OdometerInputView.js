@@ -12,13 +12,19 @@ import AwesomeButton from 'react-native-awesome-button';
 import dismissKeyboard from 'react-native-dismiss-keyboard';
 import { bindActionCreators } from 'redux';
 import commonStyles from './commonStyles';
-import { setOdometer } from '../actions';
+import { setOdometer } from '../actions/CarActions';
 
 const styles = StyleSheet.create({
 
 });
 
 class OdometerInputView extends React.Component {
+
+  static propTypes = {
+    // from mapStateToProps:
+    // from mapDispatchToProps:
+    setOdometer: React.PropTypes.func.isRequired,
+  };
 
   constructor(props) {
     super(props);
@@ -32,7 +38,7 @@ class OdometerInputView extends React.Component {
 
   setOdometerReading() {
     dismissKeyboard();
-    this.props.setOdometer(this.state.newOdometerValue);
+    this.props.setOdometer('default', this.state.newOdometerValue);
   }
 
   render() {
@@ -84,18 +90,8 @@ class OdometerInputView extends React.Component {
   }
 }
 
-OdometerInputView.propTypes = {
-  // from mapStateToProps:
-  // from mapDispatchToProps:
-  setOdometer: React.PropTypes.func,
-};
-
-const mapStateToProps = state => ({
-  initialized: state.app.initialized,
-});
-
 const mapDispatchToProps = dispatch => ({
   setOdometer: bindActionCreators(setOdometer, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(OdometerInputView);
+export default connect(null, mapDispatchToProps)(OdometerInputView);

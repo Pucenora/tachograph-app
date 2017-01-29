@@ -274,7 +274,7 @@ class TripListView extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  trips: state.trips.trips.filter(trip => trip.type !== 'initialOffset').reverse().map((trip, index) => ({
+  trips: state.trips.trips.default.filter(trip => trip.type !== 'initialOffset').reverse().map((trip, index) => ({
     ...trip,
     tripIndex: index,
   })),

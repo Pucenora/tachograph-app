@@ -3430,6 +3430,10 @@ react-native-i18n@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-i18n/-/react-native-i18n-1.0.0.tgz#0c407d9ebb846aae1aa5e05de6503008553f02fd"
 
+react-native-image-crop-picker@^0.12.1:
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.12.1.tgz#a811423d80ac66fab44707e3aee24fb94e5d11f8"
+
 react-native-obd2@fkoester/react-native-obd2:
   version "0.0.1"
   resolved "https://codeload.github.com/fkoester/react-native-obd2/tar.gz/8e99abc096d74c632eb94c2faf89d6e94f85cd81"

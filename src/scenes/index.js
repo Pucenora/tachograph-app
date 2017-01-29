@@ -17,7 +17,7 @@ const scenes = Actions.create(
     key="root"
     component={connect(state =>
       ({
-        tripsCount: state.trips.trips.length,
+        tripsCount: state.trips.trips.default && state.trips.trips.default.length,
         initialized: state.app.initialized,
       }))(Switch)}
     tabs

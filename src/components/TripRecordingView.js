@@ -107,7 +107,7 @@ TripRecordingView.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  endOdometerValue: state.trips.trips[state.trips.trips.length - 1].endOdometerValue,
+  endOdometerValue: state.trips.trips.default[state.trips.trips.length - 1].endOdometerValue,
   tripDistanceMeters: state.tracking.tripDistanceMeters,
   currentAccuracy: state.tracking.currentAccuracy,
 });

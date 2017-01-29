@@ -2,15 +2,13 @@ import React from 'react';
 import {
   View,
   Text,
+  Image,
   TouchableOpacity,
   StyleSheet,
-  Navigator,
 } from 'react-native';
-import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { drawerOpenStateChanged } from '../actions';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,40 +32,55 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 5,
   },
-  closeDrawerButton: {
-    justifyContent: 'center',
-    marginLeft: 20,
-    flex: 1,
+  currentCarHeader: {
+    marginTop: 10,
+    marginLeft: 10,
+    marginBottom: 5,
+    fontSize: 18,
   },
-  closeDrawerButtonImage: {
-    width: 30,
-    height: 30,
+  carImageButton: {
+    marginLeft: 10,
+    alignSelf: 'flex-start',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  carImage: {
+    width: 200,
+    height: 100,
+    borderRadius: 10,
+  },
+  carName: {
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 
-const navbarHeight = Navigator.NavigationBar.Styles.General.TotalNavHeight - 2;
-
 class DrawerMenuView extends React.Component {
+
+  static propTypes = {
+    // from mapStateToProps
+    carName: React.PropTypes.string,
+    carImage: React.PropTypes.string,
+  }
+
+  static defaultProps = {
+    carName: '',
+    carImage: null,
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <View
-          style={{
-            height: navbarHeight,
-  //          backgroundColor: colors.drawerTopBackgroundColor,
-          }}
+        <Text style={styles.currentCarHeader}>Aktuelles Fahrzeug:</Text>
+        <TouchableOpacity
+          style={styles.carImageButton}
         >
-          <TouchableOpacity
-            onPress={() => this.props.drawerOpenStateChanged(false)}
-            style={styles.closeDrawerButton}
-          >
-            {/* <Image
-              style={styles.closeDrawerButtonImage}
-              source={require('../assets/menu_open.png')}
-            /> */}
-          </TouchableOpacity>
-        </View>
+          <Image
+            style={styles.carImage}
+            source={{ uri: this.props.carImage }}
+          />
+          <Text style={styles.carName}>{ this.props.carName }</Text>
+        </TouchableOpacity>
 
         <TouchableOpacity
           onPress={Actions.newTripTab}
@@ -128,19 +141,9 @@ class DrawerMenuView extends React.Component {
   }
 }
 
-DrawerMenuView.propTypes = {
-  // From mapDispatchToProps:
-  drawerOpenStateChanged: React.PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-
+const mapStateToProps = state => ({
+  carName: state.cars.cars[0].name,
+  carImage: state.cars.cars[0].image,
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    drawerOpenStateChanged: bindActionCreators(drawerOpenStateChanged, dispatch),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DrawerMenuView);
+export default connect(mapStateToProps, null)(DrawerMenuView);

@@ -21,6 +21,7 @@ export function stopTracking() {
 function trackingStarted(tripType) {
   return {
     type: 'TRIP_RECORDING_STARTED',
+    carId: 'default',
     tripType,
   };
 }
@@ -39,6 +40,7 @@ export function receiveTripDistanceChanged(tripDistanceMeters, currentAccuracy) 
     type: 'RECEIVE_TRIP_DISTANCE_CHANGED',
     tripDistanceMeters,
     currentAccuracy,
+    carId: 'default',
   };
 }
 

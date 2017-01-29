@@ -259,13 +259,13 @@ const mapStateToProps = (state, ownProps) => {
   }
   if (Number.isInteger(ownProps.tripIndex) && ownProps.tripIndex >= 0) {
     return {
-      trip: state.trips.trips[ownProps.tripIndex],
+      trip: state.trips.trips.default[ownProps.tripIndex],
       tripIndex: ownProps.tripIndex,
     };
   }
   return {
-    trip: state.trips.trips[state.trips.trips.length - 1],
-    tripIndex: state.trips.trips.length - 1,
+    trip: state.trips.trips.default[state.trips.trips.default.length - 1],
+    tripIndex: state.trips.trips.default.length - 1,
   };
 };
 
