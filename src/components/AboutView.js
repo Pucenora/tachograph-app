@@ -133,6 +133,14 @@ class AboutView extends React.Component {
         <View style={styles.section}>
           <Text
             style={styles.link}
+            onPress={() => openUrl(I18n.t('AboutView_github_url'))}
+          >
+            {I18n.t('AboutView_github_label')}
+          </Text>
+        </View>
+        <View style={styles.section}>
+          <Text
+            style={styles.link}
             onPress={() => openUrl(I18n.t('AboutView_terms_url'))}
           >
             {I18n.t('AboutView_button_terms')}
