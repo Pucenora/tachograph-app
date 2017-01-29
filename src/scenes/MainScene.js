@@ -7,6 +7,12 @@ import TripBoundsView from '../components/TripBoundsView';
 import TripRouteView from '../components/TripRouteView';
 import TripPurposeView from '../components/TripPurposeView';
 import TripListView from '../components/TripListView';
+import CarListView from '../components/CarListView';
+import CarDetailView from '../components/CarDetailView';
+import DriverListView from '../components/DriverListView';
+import DriverDetailView from '../components/DriverDetailView';
+import ImportExportView from '../components/ImportExportView';
+import AboutView from '../components/AboutView';
 import Drawer from '../components/Drawer';
 
 const navbarHeight = Navigator.NavigationBar.Styles.General.TotalNavHeight - 2;
@@ -74,6 +80,48 @@ export default (
             key="tripEditPurpose"
             component={TripPurposeView}
             title="Reisezweck bearbeiten"
+            sceneStyle={commonNavbarProps.sceneStyle}
+          />
+        </Scene>
+        <Scene key="carsTab">
+          <Scene
+            key="carList"
+            component={CarListView}
+            title="Fahrzeuge"
+            sceneStyle={commonNavbarProps.sceneStyle}
+          />
+          <Scene
+            key="carDetail"
+            component={CarDetailView}
+            sceneStyle={commonNavbarProps.sceneStyle}
+          />
+        </Scene>
+        <Scene key="driversTab">
+          <Scene
+            key="driverList"
+            component={DriverListView}
+            title="Fahrzeuge"
+            sceneStyle={commonNavbarProps.sceneStyle}
+          />
+          <Scene
+            key="driverDetail"
+            component={DriverDetailView}
+            sceneStyle={commonNavbarProps.sceneStyle}
+          />
+        </Scene>
+        <Scene key="importExportTab">
+          <Scene
+            key="importExport"
+            component={ImportExportView}
+            title="Import/Export"
+            sceneStyle={commonNavbarProps.sceneStyle}
+          />
+        </Scene>
+        <Scene key="aboutTab">
+          <Scene
+            key="about"
+            component={AboutView}
+            title="Über die App"
             sceneStyle={commonNavbarProps.sceneStyle}
           />
         </Scene>

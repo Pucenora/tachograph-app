@@ -90,7 +90,7 @@ class HomeView extends React.Component {
       <ScrollView style={commonStyles.container} keyboardShouldPersistTaps="always">
         <View style={styles.infoSection}>
           <Text style={styles.infoLabel}>
-            Berechneter Tachostand:
+            Aktueller Tachostand:
           </Text>
           <Text style={styles.infoValue}>
             { calculatedOdometerReadingString } km

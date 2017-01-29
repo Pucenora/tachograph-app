@@ -88,7 +88,7 @@ class DrawerMenuView extends React.Component {
           <Text style={styles.menuItemText}>Fahrtenbuch</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={Actions.manageCarsTab}
+          onPress={Actions.carsTab}
           style={styles.menuItem}
         >
           <View style={styles.menuItemIcon}>
@@ -97,7 +97,7 @@ class DrawerMenuView extends React.Component {
           <Text style={styles.menuItemText}>Fahrzeuge verwalten</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={Actions.manageDriversTab}
+          onPress={Actions.driversTab}
           style={styles.menuItem}
         >
           <View style={styles.menuItemIcon}>
@@ -106,13 +106,22 @@ class DrawerMenuView extends React.Component {
           <Text style={styles.menuItemText}>Fahrer verwalten</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={Actions.imprintTab}
+          onPress={Actions.importExportTab}
           style={styles.menuItem}
         >
           <View style={styles.menuItemIcon}>
-            <Icon name="gavel" size={26} />
+            <Icon name="download" size={26} />
           </View>
-          <Text style={styles.menuItemText}>Impressum</Text>
+          <Text style={styles.menuItemText}>Import/Export</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={Actions.aboutTab}
+          style={styles.menuItem}
+        >
+          <View style={styles.menuItemIcon}>
+            <Icon name="info" size={26} />
+          </View>
+          <Text style={styles.menuItemText}>Über die App</Text>
         </TouchableOpacity>
       </View>
     );

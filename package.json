@@ -13,6 +13,7 @@
 		"react-native-awesome-button": "^1.6.0",
 		"react-native-button": "^1.7.1",
 		"react-native-datepicker": "^1.4.3",
+		"react-native-device-info": "^0.9.9",
 		"react-native-dismiss-keyboard": "^1.0.0",
 		"react-native-drawer": "^2.3.0",
 		"react-native-i18n": "^1.0.0",
