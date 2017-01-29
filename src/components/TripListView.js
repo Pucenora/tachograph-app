@@ -8,9 +8,10 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import Button from 'react-native-button';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import TimeAgo from 'react-native-timeago';
 import moment from 'moment';
+import I18n from 'react-native-i18n';
 
 const styles = StyleSheet.create({
   list: {
@@ -20,6 +21,7 @@ const styles = StyleSheet.create({
 
   },
   sectionHeader: {
+    marginTop: 5,
     marginLeft: 10,
   },
   sectionHeaderText: {
@@ -30,8 +32,8 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     marginLeft: 10,
     marginRight: 10,
-    borderBottomWidth: 1,
-    borderColor: '#e4e4e4',
+    // borderBottomWidth: 1,
+    // borderColor: '#e4e4e4',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -76,6 +78,20 @@ const styles = StyleSheet.create({
   },
   tripButtonLabel: {
     fontSize: 10,
+  },
+  emptyHeaderContainer: {
+    margin: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  emptyHeaderTitle: {
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  emptyHeaderButton: {
+    margin: 10,
+    fontSize: 18,
+    textAlign: 'center',
   },
 });
 
@@ -136,6 +152,7 @@ class TripListView extends React.Component {
     this.state = {
       dataSource: createListData(ds, props),
     };
+    this.renderHeader = this.renderHeader.bind(this);
     this.renderTrip = this.renderTrip.bind(this);
     this.renderSectionHeader = this.renderSectionHeader.bind(this);
     this.renderTripTime = this.renderTripTime.bind(this);
@@ -147,6 +164,24 @@ class TripListView extends React.Component {
     this.setState({
       dataSource: createListData(this.state.dataSource, nextProps),
     });
+  }
+
+  renderHeader() {
+    if (!this.props.trips || this.props.trips.length > 0) {
+      return null;
+    }
+
+    return (
+      <View style={styles.emptyHeaderContainer}>
+        <Text style={styles.emptyHeaderTitle}>{I18n.t('TripListView_empty_list_header')}</Text>
+        <Button
+          style={styles.emptyHeaderButton}
+          onPress={Actions.newTripTab}
+        >
+          { I18n.t('TripListView_empty_list_button') }
+        </Button>
+      </View>
+    );
   }
 
   renderSectionHeader(sectionData) {
@@ -203,11 +238,7 @@ class TripListView extends React.Component {
     );
   }
 
-  renderTrip(trip, sectionID, rowId) {
-    console.log(trip);
-    if (trip.type === 'initialOffset') {
-      return null;
-    }
+  renderTrip(trip) {
     return (
       <TouchableOpacity
         style={styles.tripItemContainer}
@@ -232,16 +263,18 @@ class TripListView extends React.Component {
         style={styles.list}
         contentContainerStyle={styles.listContent}
         dataSource={this.state.dataSource}
+        renderHeader={this.renderHeader}
         renderRow={this.renderTrip}
         renderSectionHeader={this.renderSectionHeader}
-        enableEmptySections
+        renderSeparator={() => <View style={{ height: 1, backgroundColor: '#CCCCCC' }} />}
+        enableEmptySections={false}
       />
     );
   }
 }
 
 const mapStateToProps = state => ({
-  trips: state.trips.trips.reverse().map((trip, index) => ({
+  trips: state.trips.trips.filter(trip => trip.type !== 'initialOffset').reverse().map((trip, index) => ({
     ...trip,
     tripIndex: index,
   })),

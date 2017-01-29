@@ -11,6 +11,8 @@ moment.locale('de');
 
 I18n.translations = {
   en: {
+    TripListView_empty_list_header: 'You haven\'t added any trips yet.',
+    TripListView_empty_list_button: 'Add a trip now',
     AboutView_title: 'About Tachograph',
     AboutView_label_app_name: 'Tachograph',
     AboutView_label_version: 'Version {{version}}',
@@ -29,6 +31,8 @@ I18n.translations = {
     AboutView_license_url: 'http://www.gnu.org/licenses/agpl-3.0.en.html',
   },
   de: {
+    TripListView_empty_list_header: 'Sie haben noch keine Fahrten eingetragen.',
+    TripListView_empty_list_button: 'Jetzt eine Fahrt hinzufügen',
     AboutView_title: 'Über Tachograph',
     AboutView_label_app_name: 'Tachograph',
     AboutView_label_version: 'Version {{version}}',
