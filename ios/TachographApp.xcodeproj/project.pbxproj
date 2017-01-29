@@ -41,6 +41,7 @@
 		D5F2C76792794823AD1CA357 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA01FE505DB498F8EF43FFB /* libReactNativePermissions.a */; };
 		B36E7E1181F4415584F0210B /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37401C54C3C54A0BBBD39245 /* libRNDeviceInfo.a */; };
 		647CD09CFA3C47D9B3ACAEF3 /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7390EDF9E683432DA69D2DAC /* libimageCropPicker.a */; };
+		58ABD384B0624950B0D4AD5F /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC5EEE8E82CD40B78799B8C9 /* libRNFS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -274,6 +275,8 @@
 		37401C54C3C54A0BBBD39245 /* libRNDeviceInfo.a */ = {isa = PBXFileReference; name = "libRNDeviceInfo.a"; path = "libRNDeviceInfo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		65DAD5BEE0F842C0B7E9E3D3 /* imageCropPicker.xcodeproj */ = {isa = PBXFileReference; name = "imageCropPicker.xcodeproj"; path = "../node_modules/react-native-image-crop-picker/ios/imageCropPicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		7390EDF9E683432DA69D2DAC /* libimageCropPicker.a */ = {isa = PBXFileReference; name = "libimageCropPicker.a"; path = "libimageCropPicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		F602290A4A9040E9BE2E58E1 /* RNFS.xcodeproj */ = {isa = PBXFileReference; name = "RNFS.xcodeproj"; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		AC5EEE8E82CD40B78799B8C9 /* libRNFS.a */ = {isa = PBXFileReference; name = "libRNFS.a"; path = "libRNFS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,6 +311,7 @@
 				D5F2C76792794823AD1CA357 /* libReactNativePermissions.a in Frameworks */,
 				B36E7E1181F4415584F0210B /* libRNDeviceInfo.a in Frameworks */,
 				647CD09CFA3C47D9B3ACAEF3 /* libimageCropPicker.a in Frameworks */,
+				58ABD384B0624950B0D4AD5F /* libRNFS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +461,7 @@
 				45EFF5176E2B4F8A86BB33D5 /* ReactNativePermissions.xcodeproj */,
 				286A0144B4BA4F1C8478A655 /* RNDeviceInfo.xcodeproj */,
 				65DAD5BEE0F842C0B7E9E3D3 /* imageCropPicker.xcodeproj */,
+				F602290A4A9040E9BE2E58E1 /* RNFS.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -917,6 +922,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -933,6 +939,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TachographApp.app/TachographApp";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

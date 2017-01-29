@@ -169,6 +169,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-fs')
     compile project(':react-native-image-crop-picker')
     compile project(':react-native-device-info')
     compile project(':react-native-permissions')
