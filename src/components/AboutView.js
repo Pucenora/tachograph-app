@@ -161,7 +161,7 @@ class AboutView extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    debug: false, // state.settings.debug,
+    debug: true, // state.settings.debug,
   };
 }
 
