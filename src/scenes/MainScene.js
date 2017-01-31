@@ -69,15 +69,16 @@ export default (
             sceneStyle={commonNavbarProps.sceneStyle}
           />
         </Scene>
-        <Scene key="driversTab" initial>
+        <Scene key="driversTab">
           <Scene
             key="driverList"
             component={DriverListView}
-            title="Fahrer"
+            title="Fahrerverwaltung"
             sceneStyle={commonNavbarProps.sceneStyle}
           />
           <Scene
             key="driverDetail"
+            title="Fahrer"
             component={DriverDetailView}
             sceneStyle={commonNavbarProps.sceneStyle}
           />
