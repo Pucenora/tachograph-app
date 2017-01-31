@@ -1,7 +1,6 @@
 import React from 'react';
 import { Navigator } from 'react-native';
 import { Scene } from 'react-native-router-flux';
-import HomeView from '../components/HomeView';
 import TripRecordingView from '../components/TripRecordingView';
 import TripBoundsView from '../components/TripBoundsView';
 import TripRouteView from '../components/TripRouteView';
@@ -25,11 +24,11 @@ export default (
   <Scene key="main">
     <Scene key="drawer" component={Drawer}>
       <Scene key="drawerTabs" tabs>
-        <Scene key="newTripTab">
+        <Scene key="tripsTab">
           <Scene
-            key="home"
-            component={HomeView}
-            title="Tachograph"
+            key="tripList"
+            component={TripListView}
+            title="Fahrtenbuch"
             sceneStyle={commonNavbarProps.sceneStyle}
           />
           <Scene
@@ -41,43 +40,17 @@ export default (
           <Scene
             key="tripBounds"
             component={TripBoundsView}
-            title="Fahrt hinzufügen"
+            title="Fahrt bearbeiten"
             sceneStyle={commonNavbarProps.sceneStyle}
           />
           <Scene
             key="tripRoute"
             component={TripRouteView}
-            title="Fahrtstrecke"
-            sceneStyle={commonNavbarProps.sceneStyle}
-          />
-          <Scene
-            key="tripPurpose"
-            component={TripPurposeView}
-            title="Reisezweck"
-            sceneStyle={commonNavbarProps.sceneStyle}
-          />
-        </Scene>
-        <Scene key="tripsTab">
-          <Scene
-            key="tripList"
-            component={TripListView}
-            title="Fahrtenbuch"
-            sceneStyle={commonNavbarProps.sceneStyle}
-          />
-          <Scene
-            key="tripEditBounds"
-            component={TripBoundsView}
-            title="Fahrt bearbeiten"
-            sceneStyle={commonNavbarProps.sceneStyle}
-          />
-          <Scene
-            key="tripEditRoute"
-            component={TripRouteView}
             title="Fahrtstrecke bearbeiten"
             sceneStyle={commonNavbarProps.sceneStyle}
           />
           <Scene
-            key="tripEditPurpose"
+            key="tripPurpose"
             component={TripPurposeView}
             title="Reisezweck bearbeiten"
             sceneStyle={commonNavbarProps.sceneStyle}

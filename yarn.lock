@@ -3391,6 +3391,10 @@ react-deep-force-update@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-1.0.1.tgz#f911b5be1d2a6fe387507dd6e9a767aa2924b4c7"
 
+react-native-action-button@^2.0.20:
+  version "2.0.20"
+  resolved "https://registry.yarnpkg.com/react-native-action-button/-/react-native-action-button-2.0.20.tgz#aaeae8d25b646a2c2c406226f8512bdc76605644"
+
 react-native-awesome-button@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/react-native-awesome-button/-/react-native-awesome-button-1.6.0.tgz#c3d08e9641fd5119b38ad9befe4f59d5b83e3d2a"

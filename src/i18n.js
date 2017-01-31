@@ -11,8 +11,10 @@ moment.locale('de');
 
 I18n.translations = {
   en: {
-    TripListView_empty_list_header: 'You haven\'t added any trips yet.',
-    TripListView_empty_list_button: 'Add a trip now',
+    TripListView_empty_list_header_title: 'You haven\'t added any trips yet.',
+    TripListView_empty_list_header_subtitle: 'Add a trip now with the button below.',
+    TripListView_action_button_add_trip: 'Add trip manually',
+    TripListView_action_button_add_record_trip: 'Record new trip',
     AboutView_title: 'About Tachograph',
     AboutView_label_app_name: 'Tachograph',
     AboutView_label_version: 'Version {{version}}',
@@ -33,8 +35,10 @@ I18n.translations = {
     AboutView_license_url: 'http://www.gnu.org/licenses/agpl-3.0.en.html',
   },
   de: {
-    TripListView_empty_list_header: 'Sie haben noch keine Fahrten eingetragen.',
-    TripListView_empty_list_button: 'Jetzt eine Fahrt hinzufügen',
+    TripListView_empty_list_header_title: 'Sie haben noch keine Fahrten eingetragen.',
+    TripListView_empty_list_header_subtitle: 'Fügen Sie jetzt eine Fahrt mit dem Knopf unten hinzu.',
+    TripListView_action_button_add_trip: 'Fahrt manuell hinzufügen',
+    TripListView_action_button_add_record_trip: 'Fahrt automatisch aufzeichnen',
     AboutView_title: 'Über Tachograph',
     AboutView_label_app_name: 'Tachograph',
     AboutView_label_version: 'Version {{version}}',

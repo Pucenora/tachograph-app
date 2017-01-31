@@ -81,16 +81,6 @@ class DrawerMenuView extends React.Component {
           />
           <Text style={styles.carName}>{ this.props.carName }</Text>
         </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={Actions.newTripTab}
-          style={[styles.menuItem, { marginTop: 20 }]}
-        >
-          <View style={styles.menuItemIcon}>
-            <Icon name="plus" size={26} />
-          </View>
-          <Text style={styles.menuItemText}>Neue Fahrt</Text>
-        </TouchableOpacity>
         <TouchableOpacity
           onPress={Actions.tripsTab}
           style={styles.menuItem}

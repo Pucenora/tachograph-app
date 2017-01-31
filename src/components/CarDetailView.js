@@ -148,7 +148,7 @@ class CarDetailView extends React.Component {
             <TextInput
               value={this.state.carName}
               editable
-              placeholder="Eindeutiger Fahrzeugname (z.B. Kennzeichen)"
+              placeholder="Ein Name für das Fahrzeug  (z.B. Kennzeichen)"
               onChangeText={newCarName => this.setState({
                 carName: newCarName,
               })}
