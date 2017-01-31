@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import Button from 'react-native-button';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment';
 import I18n from 'react-native-i18n';

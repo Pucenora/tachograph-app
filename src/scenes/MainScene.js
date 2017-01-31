@@ -56,7 +56,7 @@ export default (
             sceneStyle={commonNavbarProps.sceneStyle}
           />
         </Scene>
-        <Scene key="carsTab">
+        <Scene key="carsTab" initial>
           <Scene
             key="carList"
             component={CarListView}
