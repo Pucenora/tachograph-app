@@ -92,6 +92,7 @@ class CarListView extends React.Component {
           dataSource={this.state.dataSource}
           renderRow={CarListView.renderCar}
           renderSeparator={() => <View style={{ height: 1, backgroundColor: '#CCCCCC' }} />}
+          enableEmptySections
         />
         { CarListView.renderActionButtons() }
       </View>
